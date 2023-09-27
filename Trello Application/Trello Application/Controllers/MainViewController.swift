@@ -16,6 +16,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     @IBOutlet weak var boardsTableView: UITableView!
     
     var dataSource: [String] = []
+    var isAuthorized = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
             emptyLabel.isHidden = true
             emptyImageView.isHidden = true
         }
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isAuthorized {
+            isAuthorized = true
+            performSegue(withIdentifier: "Authorize", sender: self)
+        }
     }
 
     func configureSearchBar() {
