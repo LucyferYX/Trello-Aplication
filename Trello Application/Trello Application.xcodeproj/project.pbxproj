@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E4924EE2AC0FFBD00D1D8D9 /* BoardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4924ED2AC0FFBD00D1D8D9 /* BoardsTableViewCell.swift */; };
 		7EEBC9872ABE71FE00A0A6B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEBC9862ABE71FE00A0A6B3 /* AppDelegate.swift */; };
 		7EEBC9892ABE71FE00A0A6B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEBC9882ABE71FE00A0A6B3 /* SceneDelegate.swift */; };
-		7EEBC98B2ABE71FE00A0A6B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEBC98A2ABE71FE00A0A6B3 /* ViewController.swift */; };
+		7EEBC98B2ABE71FE00A0A6B3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEBC98A2ABE71FE00A0A6B3 /* MainViewController.swift */; };
 		7EEBC98E2ABE71FE00A0A6B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EEBC98C2ABE71FE00A0A6B3 /* Main.storyboard */; };
 		7EEBC9902ABE720000A0A6B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEBC98F2ABE720000A0A6B3 /* Assets.xcassets */; };
 		7EEBC9932ABE720000A0A6B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EEBC9912ABE720000A0A6B3 /* LaunchScreen.storyboard */; };
-		7EFEB4D32AC4D7FF007D121C /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFEB4D22AC4D7FF007D121C /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E4924ED2AC0FFBD00D1D8D9 /* BoardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsTableViewCell.swift; sourceTree = "<group>"; };
 		7EEBC9832ABE71FE00A0A6B3 /* Trello Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trello Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEBC9862ABE71FE00A0A6B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EEBC9882ABE71FE00A0A6B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7EEBC98A2ABE71FE00A0A6B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7EEBC98A2ABE71FE00A0A6B3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7EEBC98D2ABE71FE00A0A6B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7EEBC98F2ABE720000A0A6B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7EEBC9922ABE720000A0A6B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EEBC9942ABE720000A0A6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EFEB4D22AC4D7FF007D121C /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +79,8 @@
 		7EEBC99B2ABE722B00A0A6B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< Updated upstream
-				7EEBC98A2ABE71FE00A0A6B3 /* ViewController.swift */,
-=======
 				7EEBC98A2ABE71FE00A0A6B3 /* MainViewController.swift */,
 				7E4924ED2AC0FFBD00D1D8D9 /* BoardsTableViewCell.swift */,
-				7EFEB4D22AC4D7FF007D121C /* AuthorizationViewController.swift */,
->>>>>>> Stashed changes
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,13 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EEBC98B2ABE71FE00A0A6B3 /* ViewController.swift in Sources */,
+				7EEBC98B2ABE71FE00A0A6B3 /* MainViewController.swift in Sources */,
 				7EEBC9872ABE71FE00A0A6B3 /* AppDelegate.swift in Sources */,
-<<<<<<< Updated upstream
-=======
 				7E4924EE2AC0FFBD00D1D8D9 /* BoardsTableViewCell.swift in Sources */,
-				7EFEB4D32AC4D7FF007D121C /* AuthorizationViewController.swift in Sources */,
->>>>>>> Stashed changes
 				7EEBC9892ABE71FE00A0A6B3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
