@@ -15,7 +15,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var boardsTableView: UITableView!
     
-    var dataSource: [String] = []
+    let APIKey = "72e332ebe806f2444aaefc232b79699a"
+    var boards: [Board] = []
     var isAuthorized = false
     
     override func viewDidLoad() {
@@ -32,7 +33,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         boardsTableView.delegate = self
         boardsTableView.dataSource = self
         
-        if dataSource.isEmpty {
+        if boards.isEmpty {
             emptyLabel.isHidden = false
             emptyImageView.isHidden = false
         } else {
@@ -48,7 +49,55 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
             performSegue(withIdentifier: "Authorize", sender: self)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Authorize", let authorizationViewController = segue.destination as? AuthorizationViewController {
+            authorizationViewController.delegate = self
+        }
+    }
+    
+    // Fetches the boards for table list with given token
+    func fetchBoards(with token: String) {
+        print("Started fetching function.")
+        let url = URL(string: "https://api.trello.com/1/members/me/boards?fields=name,url&key=\(APIKey)&token=\(token)")!
 
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    print("Error: \(error)")
+                }
+                return
+            }
+
+            guard let data = data else { return }
+
+            do {
+                self.boards = try JSONDecoder().decode([Board].self, from: data)
+                DispatchQueue.main.async {
+                    self.boardsTableView.reloadData()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    print("Error: \(error)")
+                }
+            }
+        }.resume()
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return boards.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! BoardsTableViewCell
+        cell.boardLabel.text = boards[indexPath.row].name
+        return cell
+    }
+
+}
+
+
+extension MainViewController {
     func configureSearchBar() {
         searchBar.delegate = self
         searchBar.text = ""
@@ -63,17 +112,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         
         boardsTableView.backgroundColor = UIColor.systemGray5
     }
-    
-    // Dummy test
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+}
+
+extension MainViewController: AuthorizationViewControllerDelegate {
+    func authorizationViewController(_ controller: AuthorizationViewController, didFetchToken token: String) {
+        fetchBoards(with: token)
     }
+}
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Row \(indexPath.row)"
-        return cell
-    }
-
-
+struct Board: Codable {
+    let name: String
+    let id: String
+    let url: String
 }

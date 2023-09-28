@@ -12,6 +12,8 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var APIToken = ""
     let APIKey = "72e332ebe806f2444aaefc232b79699a"
+    weak var delegate: AuthorizationViewControllerDelegate?
+
     
     override func loadView() {
         webView = WKWebView()
@@ -39,6 +41,7 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
                 if let token = result as? String {
                     self.APIToken = token
                     print("Token fetched: \(token)")
+                    self.delegate?.authorizationViewController(self, didFetchToken: token)
                 }
             })
             navigationController?.popViewController(animated: true)
@@ -48,3 +51,6 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
 
 }
 
+protocol AuthorizationViewControllerDelegate: AnyObject {
+    func authorizationViewController(_ controller: AuthorizationViewController, didFetchToken token: String)
+}
