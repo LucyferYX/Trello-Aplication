@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     
     let APIKey = "72e332ebe806f2444aaefc232b79699a"
     var boards: [Board] = []
+    var filteredBoards: [Board] = []
     var isAuthorized = false
     
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         configureSearchBar()
         configureTableView()
         
+        searchBar.delegate = self
         boardsTableView.delegate = self
         boardsTableView.dataSource = self
         
@@ -58,7 +60,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     
     // Fetches the boards for table list with given token
     func fetchBoards(with token: String) {
-        print("Started fetching function.")
+        print("Started board fetching function.")
         let url = URL(string: "https://api.trello.com/1/members/me/boards?fields=name,url&key=\(APIKey)&token=\(token)")!
 
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -73,6 +75,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
 
             do {
                 self.boards = try JSONDecoder().decode([Board].self, from: data)
+                self.filteredBoards = self.boards
                 DispatchQueue.main.async {
                     self.boardsTableView.reloadData()
                 }
@@ -85,13 +88,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boards.count
+        return filteredBoards.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! BoardsTableViewCell
-        cell.boardLabel.text = boards[indexPath.row].name
+        cell.boardLabel.text = filteredBoards[indexPath.row].name
         return cell
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchTerms = searchText.split(separator: " ").map { String($0) }
+        filteredBoards = boards.filter { board in
+            searchText.isEmpty || searchTerms.allSatisfy { searchTerm in
+                board.name.lowercased().contains(searchTerm.lowercased())
+            }
+        }
+        boardsTableView.reloadData()
     }
 
 }
