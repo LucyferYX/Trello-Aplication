@@ -70,7 +70,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V5M-oc-c6A" firstAttribute="top" secondItem="u6D-Cc-Puc" secondAttribute="bottom" constant="7" id="87u-q1-2oc"/>
                             <constraint firstItem="A3p-4S-2bh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8CP-Un-ivO"/>
                             <constraint firstItem="90z-nW-MNe" firstAttribute="leading" secondItem="A3p-4S-2bh" secondAttribute="leading" id="9bG-7G-LUQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="A3p-4S-2bh" secondAttribute="trailing" constant="16" id="CiD-mh-jJj"/>
@@ -84,6 +83,7 @@
                             <constraint firstItem="evt-jb-FfW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fEK-48-EN3"/>
                             <constraint firstItem="u6D-Cc-Puc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hFn-3t-Y8V"/>
                             <constraint firstItem="evt-jb-FfW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lmk-CN-Q1c"/>
+                            <constraint firstItem="V5M-oc-c6A" firstAttribute="top" secondItem="u6D-Cc-Puc" secondAttribute="bottom" constant="7" id="qMk-ra-kHo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WgN-Zk-bhc"/>
@@ -122,7 +122,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WWk-fQ-7oP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qDw-Sz-2uW">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
