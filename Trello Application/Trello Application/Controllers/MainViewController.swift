@@ -56,6 +56,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         if segue.identifier == "Authorize", let authorizationViewController = segue.destination as? AuthorizationViewController {
             authorizationViewController.delegate = self
         }
+        if segue.identifier == "BoardDetails",
+           let boardDetailsViewController = segue.destination as? BoardDetailsViewController,
+           let indexPath = boardsTableView.indexPathForSelectedRow {
+            // Pass the selected board to BoardDetailsViewController
+            boardDetailsViewController.board = boards[indexPath.row]
+        }
     }
     
     // Fetches the boards for table list with given token
@@ -95,6 +101,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UISearchBarDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! BoardsTableViewCell
         cell.boardLabel.text = filteredBoards[indexPath.row].name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "BoardDetails", sender: self)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
